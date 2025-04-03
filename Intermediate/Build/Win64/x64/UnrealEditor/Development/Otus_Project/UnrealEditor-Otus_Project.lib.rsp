@@ -1,0 +1,15 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-Otus_Project.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\Otus_ProjectEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.InclOrderOldest.h.obj"
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\MySlidingDoor.gen.cpp.obj"
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\Otus_Project.init.gen.cpp.obj"
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\Otus_Project.cpp.obj"
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\MySlidingDoor.cpp.obj"
+"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\Default.rc2.res"
+/OUT:"E:\UE5\Otus\Intermediate\Build\Win64\x64\UnrealEditor\Development\Otus_Project\UnrealEditor-Otus_Project.lib"

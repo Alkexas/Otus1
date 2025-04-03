@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"E:\\UE5\\Otus\\Source\\Otus_Project\\Otus_Project.Build.cs",
+		"E:\\UE5\\Otus\\Source\\Otus_Project.Target.cs",
+		"E:\\UE5\\Otus\\Source\\Otus_ProjectEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}

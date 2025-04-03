@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Otus_Project",
+			"Path": "..\\Source\\Otus_Project.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "Otus_ProjectEditor",
+			"Path": "..\\Source\\Otus_ProjectEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
