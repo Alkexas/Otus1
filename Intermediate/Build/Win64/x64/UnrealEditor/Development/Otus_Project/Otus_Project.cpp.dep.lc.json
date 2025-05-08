@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "e:\\ue5\\otus\\source\\otus_project\\otus_project.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\ue5\\otus\\intermediate\\build\\win64\\x64\\otus_projecteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "e:\\ue5\\otus\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\otus_project\\definitions.otus_project.h",
+            "e:\\ue5\\otus\\source\\otus_project\\otus_project.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

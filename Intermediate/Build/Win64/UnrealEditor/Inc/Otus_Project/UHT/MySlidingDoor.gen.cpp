@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeMySlidingDoor() {}
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 OTUS_PROJECT_API UClass* Z_Construct_UClass_AMySlidingDoor();
@@ -80,6 +81,48 @@ DEFINE_FUNCTION(AMySlidingDoor::execOpenDoor)
 }
 // End Class AMySlidingDoor Function OpenDoor
 
+// Begin Class AMySlidingDoor Function UpdateDoorPosition
+struct Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics
+{
+	struct MySlidingDoor_eventUpdateDoorPosition_Parms
+	{
+		float Value;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/MySlidingDoor.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Value;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::NewProp_Value = { "Value", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MySlidingDoor_eventUpdateDoorPosition_Parms, Value), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::NewProp_Value,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMySlidingDoor, nullptr, "UpdateDoorPosition", nullptr, nullptr, Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::MySlidingDoor_eventUpdateDoorPosition_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::MySlidingDoor_eventUpdateDoorPosition_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMySlidingDoor::execUpdateDoorPosition)
+{
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Value);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->UpdateDoorPosition(Z_Param_Value);
+	P_NATIVE_END;
+}
+// End Class AMySlidingDoor Function UpdateDoorPosition
+
 // Begin Class AMySlidingDoor
 void AMySlidingDoor::StaticRegisterNativesAMySlidingDoor()
 {
@@ -87,6 +130,7 @@ void AMySlidingDoor::StaticRegisterNativesAMySlidingDoor()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CloseDoor", &AMySlidingDoor::execCloseDoor },
 		{ "OpenDoor", &AMySlidingDoor::execOpenDoor },
+		{ "UpdateDoorPosition", &AMySlidingDoor::execUpdateDoorPosition },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -100,6 +144,10 @@ struct Z_Construct_UClass_AMySlidingDoor_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "IncludePath", "MySlidingDoor.h" },
+		{ "ModuleRelativePath", "Public/MySlidingDoor.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DoorCurveFloat_MetaData[] = {
+		{ "Category", "MySlidingDoor" },
 		{ "ModuleRelativePath", "Public/MySlidingDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DefaultSceneComponent_MetaData[] = {
@@ -133,7 +181,12 @@ struct Z_Construct_UClass_AMySlidingDoor_Statics
 		{ "Category", "MySlidingDoor" },
 		{ "ModuleRelativePath", "Public/MySlidingDoor.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SlideDistance_MetaData[] = {
+		{ "Category", "Door Settings" },
+		{ "ModuleRelativePath", "Public/MySlidingDoor.h" },
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_DoorCurveFloat;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultSceneComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DoorMesh;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BoxCollision;
@@ -141,11 +194,13 @@ struct Z_Construct_UClass_AMySlidingDoor_Statics
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ClosedPosition;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DoorSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DoorDistance;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_SlideDistance;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AMySlidingDoor_CloseDoor, "CloseDoor" }, // 1001572494
 		{ &Z_Construct_UFunction_AMySlidingDoor_OpenDoor, "OpenDoor" }, // 2942868448
+		{ &Z_Construct_UFunction_AMySlidingDoor_UpdateDoorPosition, "UpdateDoorPosition" }, // 719218062
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -153,6 +208,7 @@ struct Z_Construct_UClass_AMySlidingDoor_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorCurveFloat = { "DoorCurveFloat", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, DoorCurveFloat), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DoorCurveFloat_MetaData), NewProp_DoorCurveFloat_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DefaultSceneComponent = { "DefaultSceneComponent", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, DefaultSceneComponent), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefaultSceneComponent_MetaData), NewProp_DefaultSceneComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorMesh = { "DoorMesh", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, DoorMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DoorMesh_MetaData), NewProp_DoorMesh_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_BoxCollision = { "BoxCollision", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, BoxCollision), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoxCollision_MetaData), NewProp_BoxCollision_MetaData) };
@@ -160,7 +216,9 @@ const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AMySlidingDoor
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_ClosedPosition = { "ClosedPosition", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, ClosedPosition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ClosedPosition_MetaData), NewProp_ClosedPosition_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorSpeed = { "DoorSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, DoorSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DoorSpeed_MetaData), NewProp_DoorSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorDistance = { "DoorDistance", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, DoorDistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DoorDistance_MetaData), NewProp_DoorDistance_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_SlideDistance = { "SlideDistance", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMySlidingDoor, SlideDistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SlideDistance_MetaData), NewProp_SlideDistance_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMySlidingDoor_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorCurveFloat,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DefaultSceneComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_BoxCollision,
@@ -168,6 +226,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMySlidin
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_ClosedPosition,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_DoorDistance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMySlidingDoor_Statics::NewProp_SlideDistance,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMySlidingDoor_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMySlidingDoor_Statics::DependentSingletons[])() = {
@@ -210,10 +269,10 @@ AMySlidingDoor::~AMySlidingDoor() {}
 struct Z_CompiledInDeferFile_FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMySlidingDoor, AMySlidingDoor::StaticClass, TEXT("AMySlidingDoor"), &Z_Registration_Info_UClass_AMySlidingDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMySlidingDoor), 3591840327U) },
+		{ Z_Construct_UClass_AMySlidingDoor, AMySlidingDoor::StaticClass, TEXT("AMySlidingDoor"), &Z_Registration_Info_UClass_AMySlidingDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMySlidingDoor), 1730907213U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_1416832146(TEXT("/Script/Otus_Project"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_2829759347(TEXT("/Script/Otus_Project"),
 	Z_CompiledInDeferFile_FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

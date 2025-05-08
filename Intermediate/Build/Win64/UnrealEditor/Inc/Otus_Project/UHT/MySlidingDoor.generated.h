@@ -14,12 +14,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define OTUS_PROJECT_MySlidingDoor_generated_h
 
-#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execUpdateDoorPosition); \
 	DECLARE_FUNCTION(execCloseDoor); \
 	DECLARE_FUNCTION(execOpenDoor);
 
 
-#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_INCLASS_NO_PURE_DECLS \
+#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMySlidingDoor(); \
 	friend struct Z_Construct_UClass_AMySlidingDoor_Statics; \
@@ -28,7 +29,7 @@ public: \
 	DECLARE_SERIALIZER(AMySlidingDoor)
 
 
-#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMySlidingDoor(AMySlidingDoor&&); \
@@ -40,13 +41,13 @@ public: \
 	NO_API virtual ~AMySlidingDoor();
 
 
-#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_8_PROLOG
-#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_GENERATED_BODY \
+#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_9_PROLOG
+#define FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_INCLASS_NO_PURE_DECLS \
-	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_11_ENHANCED_CONSTRUCTORS \
+	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_INCLASS_NO_PURE_DECLS \
+	FID_UE5_Otus_Source_Otus_Project_Public_MySlidingDoor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

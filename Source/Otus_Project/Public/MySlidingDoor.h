@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "Components/TimelineComponent.h"
 #include "GameFramework/Actor.h"
 #include "MySlidingDoor.generated.h"
 
@@ -16,14 +17,27 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	FTimeline Timeline;
+	UPROPERTY(EditAnywhere)
+	UCurveFloat* DoorCurveFloat;
+
+	
+
 public:    
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Door")
 	void OpenDoor();
+	
 
 	UFUNCTION(BlueprintCallable, Category = "Door")
 	void CloseDoor();
+
+	
+	UFUNCTION()
+	void UpdateDoorPosition(float Value);
+
+	
 
 private:
 
@@ -48,5 +62,11 @@ private:
 	UPROPERTY(EditAnywhere)
 	float DoorDistance;
 
+	UPROPERTY(EditAnywhere, Category = "Door Settings")
+	float SlideDistance = 100.f;
+
 	bool bIsOpen;
+
+	bool bIsDoorClosed = true;
+	
 };

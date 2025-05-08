@@ -2,7 +2,6 @@
 
 
 #include "MySlidingDoor.h"
-
 #include "VectorTypes.h"
 #include "Components/BoxComponent.h"
 
@@ -14,62 +13,69 @@ AMySlidingDoor::AMySlidingDoor()
     RootComponent = DefaultSceneComponent;
     DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
     DoorMesh->SetupAttachment(DefaultSceneComponent);
-    BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-    BoxCollision->SetupAttachment(DefaultSceneComponent);
-	
-	
+    	
     //ClosedPosition = GetActorLocation();
-    //OpenPosition = ClosedPosition + FVector(100.0f, 0.0f, 0.0f); // Дистанция открытия
-    DoorSpeed = 100.0f; // Скорость анимации
-    bIsOpen = false;
-    DoorDistance= 100.0f;
+    //bIsOpen = false;
+    //DoorDistance= 100.0f;
     
-   
-
-	
+   	
 }
 
 void AMySlidingDoor::BeginPlay()
 {
     Super::BeginPlay();
+    
     ClosedPosition = GetActorLocation();
     OpenPosition = ClosedPosition + GetActorForwardVector() * DoorDistance;
+
+    if (DoorCurveFloat)
+    {
+        FOnTimelineFloat TimelineProgress;
+        TimelineProgress.BindUFunction(this, FName("UpdateDoorPosition"));
+        Timeline.AddInterpFloat(DoorCurveFloat, TimelineProgress);
+        Timeline.SetLooping(false);
+    }
+    
+    
 }
 
 void AMySlidingDoor::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if (bIsOpen)
-    {
-        FVector CurrentLocation = GetActorLocation();
-        FVector NewLocation = FMath::VInterpTo(CurrentLocation, OpenPosition, DeltaTime, DoorSpeed);
-        DoorMesh->SetWorldLocation(NewLocation);
+    Timeline.TickTimeline(DeltaTime);
+}
 
-        if (FVector::Dist(NewLocation, OpenPosition) < 1.0f)
-        {
-            bIsOpen = true;
-        }
-    }
-    else
-    {
-        FVector CurrentLocation = GetActorLocation();
-        FVector NewLocation = FMath::VInterpTo(CurrentLocation, ClosedPosition, DeltaTime, DoorSpeed);
-        DoorMesh->SetWorldLocation(NewLocation);
+void AMySlidingDoor::UpdateDoorPosition(float Value)
+{
+    FVector NewPosition = FMath::Lerp(ClosedPosition, OpenPosition, Value);
+    DoorMesh->SetWorldLocation(NewPosition);
 
-        if (FVector::Dist(NewLocation, ClosedPosition) < 1.0f)
-        {
-            bIsOpen = false;
-        }
-    }
 }
 
 void AMySlidingDoor::OpenDoor()
 {
-    bIsOpen = true;
+
+    if (bIsDoorClosed && DoorCurveFloat)
+    {
+        Timeline.Play();
+        bIsDoorClosed = false;
+        
+    }
+    
 }
 
 void AMySlidingDoor::CloseDoor()
 {
-    bIsOpen = false;
+    if (!bIsDoorClosed && DoorCurveFloat)
+    {
+        Timeline.Reverse();
+        bIsDoorClosed = true;
+        
+    }
+    
 }
+
+
+
+
